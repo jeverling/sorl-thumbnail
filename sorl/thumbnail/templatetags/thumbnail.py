@@ -259,6 +259,11 @@ def text_filter(regex_base, value):
 
         im = get_thumbnail(image, str(sorl_settings.THUMBNAIL_FILTER_WIDTH))
         value = value.replace(i[1], im.url)
+        try:
+            title = 'title="{}" width='.format(i[1])
+            value = value.replace('width=', title)
+        except IndexError:
+            pass
 
     return value
 
