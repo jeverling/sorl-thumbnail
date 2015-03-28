@@ -86,7 +86,7 @@ class ThumbnailNodeBase(Node):
             return self.nodelist_empty.render(context)
 
     def _render(self, context):
-        raise NotImplementedError()
+        raise NotImplemented()
 
 
 class ThumbnailNode(ThumbnailNodeBase):
@@ -258,12 +258,8 @@ def text_filter(regex_base, value):
             image = image[len(settings.MEDIA_URL):]
 
         im = get_thumbnail(image, str(sorl_settings.THUMBNAIL_FILTER_WIDTH))
-        value = value.replace(i[1], im.url)
-        try:
-            title = 'title="{}" width='.format(i[1])
-            value = value.replace('width=', title)
-        except IndexError:
-            pass
+        title_url = '{}" title="{}"'.format(im.url, i[1])
+        value = value.replace(i[1], title_url)
 
     return value
 
