@@ -258,7 +258,7 @@ def text_filter(regex_base, value):
             image = image[len(settings.MEDIA_URL):]
 
         im = get_thumbnail(image, str(sorl_settings.THUMBNAIL_FILTER_WIDTH))
-        title_url = '{}" title="{}"'.format(im.url, i[1])
+        title_url = '{}" title="{}'.format(im.url, i[1])
         value = value.replace(i[1], title_url)
 
     return value
